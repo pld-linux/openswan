@@ -23,6 +23,7 @@ BuildRequires:	flex
 BuildRequires:	gmp-devel
 BuildRequires:	htmldoc
 BuildRequires:	man2html
+BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -42,9 +43,9 @@ polityk± otaczaj±c± projekt FreeS/WAN.
 %patch0 -p1
 %patch1 -p1
 
-%{__sed} -i -e "s#/lib/ipsec$#/%{_lib}/ipsec#g" Makefile
-%{__sed} -i -e "s#/lib/freeswan$#/%{_lib}/freeswan#g" Makefile
-%{__sed} -i -e "s#/lib/ipsec$#/%{_lib}/ipsec#g" Makefile.inc
+%{__sed} -i -e "s#/lib/ipsec$#/%{_lib}/ipsec#g#" Makefile
+%{__sed} -i -e "s#/lib/freeswan$#/%{_lib}/freeswan#g#" Makefile
+%{__sed} -i -e "s#/lib/ipsec$#/%{_lib}/ipsec#g#" Makefile.inc
 
 %build
 %{__make} programs
