@@ -18,6 +18,8 @@ URL:		http://www.openswan.org/
 BuildRequires:	gmp-devel
 BuildRequires:	htmldoc
 BuildRequires:	man2html
+BuildRequires:	bison
+BuildRequires:	flex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
