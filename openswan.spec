@@ -17,6 +17,8 @@ Obsoletes:	ipsec-tools
 Obsoletes:	strongswan
 Obsoletes:	freeswan
 Provides:	freeswan
+PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
 Requires:	bash
 BuildRequires:	bison
 BuildRequires:	flex
