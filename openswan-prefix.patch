@@ -1,0 +1,51 @@
+diff -Nuard openswan-2.1.2.orig/Makefile.inc openswan-2.1.2/Makefile.inc
+--- openswan-2.1.2.orig/Makefile.inc	2004-05-07 05:12:52.000000000 +0200
++++ openswan-2.1.2/Makefile.inc	2004-05-25 12:02:02.000000000 +0200
+@@ -62,7 +62,7 @@
+ DESTDIR?=
+ 
+ # "local" part of tree, used in building other pathnames
+-INC_USRLOCAL=/usr/local
++INC_USRLOCAL=/usr
+ 
+ # PUBDIR is where the "ipsec" command goes; beware, many things define PATH
+ # settings which are assumed to include it (or at least, to include *some*
+@@ -71,7 +71,7 @@
+ 
+ # BINDIR is where sub-commands get put, FINALBINDIR is where the "ipsec"
+ # command will look for them when it is run. Also called LIBEXECDIR.
+-FINALLIBEXECDIR=$(INC_USRLOCAL)/libexec/ipsec
++FINALLIBEXECDIR=$(INC_USRLOCAL)/lib/ipsec
+ LIBEXECDIR=$(DESTDIR)$(FINALBINDIR)
+ 
+ FINALBINDIR=${FINALLIBEXECDIR}
+@@ -91,7 +91,7 @@
+ # location within INC_USRLOCAL
+ INC_MANDIR=man
+ # the full pathname
+-MANTREE=$(DESTDIR)$(INC_USRLOCAL)/$(INC_MANDIR)
++MANTREE=$(DESTDIR)$(INC_USRLOCAL)/share/$(INC_MANDIR)
+ # all relevant subdirectories of MANTREE
+ MANPLACES=man3 man5 man8
+ 
+@@ -294,7 +294,7 @@
+ USE_OE?=no
+ ifeq ($(USE_OE),no)
+ # warning: examples subdirectory is statically defined here
+-OE_FLAG=\#Disable Opportunistic Encryption\\ninclude ${FINALCONFDDIR}/examples/no_oe.conf
++OE_FLAG=\#Disable Opportunistic Encryption\\ninclude ${FINALCONFDDIR}/no_oe.conf
+ else
+ endif
+ 
+diff -Nuard openswan-2.1.2.orig/programs/examples/Makefile openswan-2.1.2/programs/examples/Makefile
+--- openswan-2.1.2.orig/programs/examples/Makefile	2004-01-20 20:24:23.000000000 +0100
++++ openswan-2.1.2/programs/examples/Makefile	2004-05-25 12:05:58.308427376 +0200
+@@ -16,7 +16,7 @@
+ FREESWANSRCDIR=../..
+ include ${FREESWANSRCDIR}/Makefile.inc
+ 
+-CONFDSUBDIR=examples
++CONFDSUBDIR=.
+ CONFDFILES=no_oe.conf
+ 
+ include ../Makefile.program
