@@ -5,17 +5,18 @@
 Summary:	Open Source implementation of IPsec for the Linux operating system
 Summary(pl):	Otwarta implementacja IPseca dla systemu operacyjnego Linux
 Name:		openswan
-Version:	2.1.4
+Version:	2.2.0
 Release:	0.1
 Epoch:		0
 License:	GPL/BSD
 Group:		Networking/Daemons
 Source0:	http://www.openswan.org/code/%{name}-%{version}.tar.gz
-# Source0-md5:	5fd6e1866c392ab7e53b605ec70db11b
+# Source0-md5:	f5f83204652627cf51d2567c53df5520
 Source1:	%{name}.init
 Patch0:		%{name}-prefix.patch
 URL:		http://www.openswan.org/
 BuildRequires:	gmp-devel
+BuildRequires:	htmldoc
 BuildRequires:	man2html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -36,7 +37,7 @@ polityk± otaczaj±c± projekt FreeS/WAN.
 %patch0 -p1
 
 %build
-%{__make} programs 
+%{__make} programs
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -44,7 +45,7 @@ install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-	
+
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/ipsec
 
 %clean
@@ -76,7 +77,7 @@ fi
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ipsec.conf
 %dir %{_sysconfdir}/ipsec.d
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ipsec.d/*
-%{_docdir}/freeswan
+%{_datadir}/doc/openswan/*
 %{_mandir}/man3/*
 %{_mandir}/man5/*
 %{_mandir}/man8/*
