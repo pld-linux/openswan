@@ -58,6 +58,7 @@ install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/ipsec
+%{__sed} -i -e "s#/lib/ipsec#/%{_lib}/ipsec#g#" $RPM_BUILD_ROOT/etc/rc.d/init.d/ipsec
 
 %clean
 rm -rf $RPM_BUILD_ROOT
