@@ -15,11 +15,11 @@ Source0:	http://www.openswan.org/code/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Patch0:		%{name}-prefix.patch
 URL:		http://www.openswan.org/
+BuildRequires:	bison
+BuildRequires:	flex
 BuildRequires:	gmp-devel
 BuildRequires:	htmldoc
 BuildRequires:	man2html
-BuildRequires:	bison
-BuildRequires:	flex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -35,7 +35,7 @@ rozpoczête przez kilku programistów coraz bardziej sfrustrowanych
 polityk± otaczaj±c± projekt FreeS/WAN.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 %patch0 -p1
 
 %build
@@ -79,7 +79,7 @@ fi
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ipsec.conf
 %dir %{_sysconfdir}/ipsec.d
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ipsec.d/*
-%{_datadir}/doc/openswan/*
+%{_docdir}/openswan
 %{_mandir}/man3/*
 %{_mandir}/man5/*
 %{_mandir}/man8/*
