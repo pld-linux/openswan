@@ -1,12 +1,9 @@
 
-# TODO: - work on kernel 2.6, need Requires: kernel >= 2.6.0
-#       - /etc/rc.d/init.d/ipsec need work
-
 Summary:	Open Source implementation of IPsec for the Linux operating system
 Summary(pl):	Otwarta implementacja IPseca dla systemu operacyjnego Linux
 Name:		openswan
 Version:	2.2.0
-Release:	0.2
+Release:	1
 Epoch:		0
 License:	GPL/BSD
 Group:		Networking/Daemons
