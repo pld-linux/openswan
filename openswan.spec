@@ -11,6 +11,7 @@ License:	GPL/BSD
 Group:		Networking/Daemons
 Source0:	http://www.openswan.org/code/%{name}-%{version}.tar.gz
 # Source0-md5:	3504c480097136b5df5988b313315811
+Source1:	%{name}.init
 Patch0:		%{name}-prefix.patch
 URL:		http://www.openswan.org/
 BuildRequires:	make
@@ -35,8 +36,12 @@ make programs
 %install
 rm -rf $RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d}
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+	
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/ipsec
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -70,10 +75,7 @@ fi
 %attr(754,root,root) %{_sysconfdir}/rc.d/init.d/ipsec
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ipsec.conf
 %dir %{_sysconfdir}/ipsec.d
-%dir %{_sysconfdir}/ipsec.d/policies
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ipsec.d/policies/*
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ipsec.d/*
-%dir %{_docdir}/freeswan
 %{_docdir}/freeswan
 %{_mandir}/man3
 %{_mandir}/man5
