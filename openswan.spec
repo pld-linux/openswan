@@ -16,6 +16,10 @@ Source1:	%{name}.init
 Patch0:		%{name}-prefix.patch
 Patch1:		%{name}-bash.patch
 URL:		http://www.openswan.org/
+Obsoletes:	ipsec-tools
+Obsoletes:	strongswan
+Obsoletes:	freeswan
+Provides:	freeswan
 Requires:	bash
 BuildRequires:	bison
 BuildRequires:	flex
