@@ -24,6 +24,7 @@ BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gmp-devel
 BuildRequires:	htmldoc
+BuildRequires:	lynx
 BuildRequires:	man2html
 BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
