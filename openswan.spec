@@ -2,13 +2,13 @@
 Summary:	Open Source implementation of IPsec for the Linux operating system
 Summary(pl):	Otwarta implementacja IPseca dla systemu operacyjnego Linux
 Name:		openswan
-Version:	2.3.0
+Version:	2.3.1
 Release:	1
 Epoch:		0
 License:	GPL/BSD
 Group:		Networking/Daemons
 Source0:	http://www.openswan.org/download/%{name}-%{version}.tar.gz
-# Source0-md5:	709d2b1102ddf6e50620b2fb5038e62b
+# Source0-md5:	3dcf1cd7efcbe8db3148fc288d429db1
 Source1:	%{name}.init
 Patch0:		%{name}-prefix.patch
 Patch1:		%{name}-bash.patch
