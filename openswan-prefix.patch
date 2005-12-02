@@ -41,11 +41,11 @@ diff -Nuard openswan-2.1.2.orig/programs/examples/Makefile openswan-2.1.2/progra
 --- openswan-2.1.2.orig/programs/examples/Makefile	2004-01-20 20:24:23.000000000 +0100
 +++ openswan-2.1.2/programs/examples/Makefile	2004-05-25 12:05:58.308427376 +0200
 @@ -16,7 +16,7 @@
- FREESWANSRCDIR=../..
- include ${FREESWANSRCDIR}/Makefile.inc
+ OPENSWANSRCDIR?=$(shell cd ../..; pwd)
+ include ${OPENSWANSRCDIR}/Makefile.inc
  
 -CONFDSUBDIR=examples
 +CONFDSUBDIR=.
- CONFDFILES=no_oe.conf
+ CONFDFILES=no_oe.conf l2tp-cert.conf l2tp-cert-orgWIN2KXP.conf l2tp-psk.conf l2tp-psk-orgWIN2KXP.conf
  
- include ../Makefile.program
+ include ${srcdir}../Makefile.program

@@ -205,24 +205,6 @@ diff -uNr openswan-2.2.0.orig/programs/_startklips/_startklips.in openswan-2.2.0
  # KLIPS startup script
  # Copyright (C) 1998, 1999, 2001, 2002  Henry Spencer.
  # 
-diff -uNr openswan-2.2.0.orig/programs/_updown/_updown.ip2.in openswan-2.2.0/programs/_updown/_updown.ip2.in
---- openswan-2.2.0.orig/programs/_updown/_updown.ip2.in	2004-06-01 15:30:57.000000000 +0200
-+++ openswan-2.2.0/programs/_updown/_updown.ip2.in	2004-11-24 20:34:49.961962632 +0100
-@@ -1,4 +1,4 @@
--#! /bin/sh
-+#! /bin/bash
- # iproute2 version, default updown script
- #
- # Copyright (C) 2003-2004 Nigel Meteringham
-diff -uNr openswan-2.2.0.orig/programs/_updown/_updown.posix.in openswan-2.2.0/programs/_updown/_updown.posix.in
---- openswan-2.2.0.orig/programs/_updown/_updown.posix.in	2003-10-28 22:36:17.000000000 +0100
-+++ openswan-2.2.0/programs/_updown/_updown.posix.in	2004-11-24 20:34:57.316844520 +0100
-@@ -1,4 +1,4 @@
--#! /bin/sh
-+#! /bin/bash
- # default updown script
- # Copyright (C) 2000, 2001  D. Hugh Redelmeier, Henry Spencer
- # 
 diff -uNr openswan-2.2.0.orig/programs/_updown_x509/_updown_x509.in openswan-2.2.0/programs/_updown_x509/_updown_x509.in
 --- openswan-2.2.0.orig/programs/_updown_x509/_updown_x509.in	2003-10-31 03:31:13.000000000 +0100
 +++ openswan-2.2.0/programs/_updown_x509/_updown_x509.in	2004-11-24 20:35:06.560439280 +0100
