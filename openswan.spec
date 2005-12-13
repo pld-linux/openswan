@@ -17,9 +17,6 @@ Obsoletes:	ipsec-tools
 Obsoletes:	strongswan
 Obsoletes:	freeswan
 Provides:	freeswan
-PreReq:		rc-scripts
-Requires(post,preun):	/sbin/chkconfig
-Requires:	bash
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gmp-devel
@@ -27,6 +24,9 @@ BuildRequires:	htmldoc
 BuildRequires:	lynx
 BuildRequires:	man2html
 BuildRequires:	sed >= 4.0
+Requires(post,preun):	/sbin/chkconfig
+Requires:	bash
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -89,9 +89,9 @@ fi
 %dir %{_libdir}/ipsec
 %attr(755,root,root) %{_libdir}/ipsec/*
 %attr(754,root,root) /etc/rc.d/init.d/ipsec
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ipsec.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.conf
 %dir %{_sysconfdir}/ipsec.d
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ipsec.d/*
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/*
 %{_docdir}/openswan
 %{_mandir}/man3/*
 %{_mandir}/man5/*
