@@ -1,0 +1,4 @@
+- up to 2.3.0 (security update)
+- changed Source0
+- STBR
+  [fixes CAN-2005-0162 (GENERIC-MAP-NOMATCH)]
