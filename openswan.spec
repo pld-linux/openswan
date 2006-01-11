@@ -56,7 +56,7 @@ polityk± otaczaj±c± projekt FreeS/WAN.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
+install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d,/var/run/pluto}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -105,6 +105,7 @@ fi
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.conf
 %dir %{_sysconfdir}/ipsec.d
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/*
+%dir /var/run/pluto
 %{_mandir}/man5/*
 %{_mandir}/man8/*
 %{_docdir}/openswan
