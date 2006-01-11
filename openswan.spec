@@ -1,4 +1,3 @@
-#
 Summary:	Open Source implementation of IPsec for the Linux operating system
 Summary(pl):	Otwarta implementacja IPseca dla systemu operacyjnego Linux
 Name:		openswan
@@ -13,10 +12,6 @@ Source1:	%{name}.init
 Patch0:		%{name}-prefix.patch
 Patch1:		%{name}-bash.patch
 URL:		http://www.openswan.org/
-Obsoletes:	ipsec-tools
-Obsoletes:	strongswan
-Obsoletes:	freeswan
-Provides:	freeswan
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gmp-devel
@@ -27,6 +22,10 @@ BuildRequires:	sed >= 4.0
 Requires(post,preun):	/sbin/chkconfig
 Requires:	bash
 Requires:	rc-scripts
+Provides:	freeswan
+Obsoletes:	freeswan
+Obsoletes:	ipsec-tools
+Obsoletes:	strongswan
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -51,7 +50,9 @@ polityk± otaczaj±c± projekt FreeS/WAN.
 %{__sed} -i -e "s#/lib/ipsec#/%{_lib}/ipsec#g#" Makefile.inc
 
 %build
-%{__make} programs
+%{__make} programs \
+	CC="%{__cc}" \
+	USERCOMPILE="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -62,6 +63,18 @@ install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/ipsec
 %{__sed} -i -e "s#/lib/ipsec#/%{_lib}/ipsec#g#" $RPM_BUILD_ROOT/etc/rc.d/init.d/ipsec
+
+for l in `find $RPM_BUILD_ROOT%{_mandir}/man3 -type l` ; do
+	d=`readlink $l`
+	rm -f $l
+	echo ".so $d" > $l
+done
+
+# just man pages converted to HTML
+rm -rf $RPM_BUILD_ROOT%{_docdir}/openswan/*.[358].html
+
+# API not exported - kill for now
+rm -rf $RPM_BUILD_ROOT%{_mandir}/man3
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -92,7 +105,9 @@ fi
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.conf
 %dir %{_sysconfdir}/ipsec.d
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/*
-%{_docdir}/openswan
-%{_mandir}/man3/*
 %{_mandir}/man5/*
 %{_mandir}/man8/*
+%{_docdir}/openswan
+
+# devel docs (but no devel libs)
+#%{_mandir}/man3/*
