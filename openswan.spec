@@ -19,9 +19,6 @@ URL:		http://www.openswan.org/
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gmp-devel
-BuildRequires:	htmldoc
-BuildRequires:	lynx
-BuildRequires:	man2html
 BuildRequires:	sed >= 4.0
 Requires(post,preun):	/sbin/chkconfig
 Requires:	bash
@@ -101,7 +98,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc BUGS CHANGES CREDITS LICENSE README
+%doc BUGS CHANGES CREDITS LICENSE README doc
 %attr(755,root,root) %{_sbindir}/*
 %dir %{_libdir}/ipsec
 %attr(755,root,root) %{_libdir}/ipsec/*
@@ -112,7 +109,7 @@ fi
 %dir /var/run/pluto
 %{_mandir}/man5/*
 %{_mandir}/man8/*
-%{_docdir}/openswan
+
 
 # devel docs (but no devel libs)
 #%{_mandir}/man3/*
