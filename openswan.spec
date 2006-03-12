@@ -19,6 +19,7 @@ URL:		http://www.openswan.org/
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gmp-devel
+BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	sed >= 4.0
 Requires(post,preun):	/sbin/chkconfig
 Requires:	bash
@@ -82,18 +83,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add ipsec
-if [ -f /var/lock/subsys/ipsec ]; then
-        /etc/rc.d/init.d/ipsec restart >&2
-else
-        echo "Run \"/etc/rc.d/init.d/ipsec start\" to start IPSEC daemon."
-fi
+%service ipsec restart "IPSEC daemon"
 
 %preun
 if [ "$1" = "0" ]; then
-        if [ -f /var/lock/subsys/ipsec ]; then
-    		/etc/rc.d/init.d/ipsec stop>&2
-	fi
-        /sbin/chkconfig --del ipsec
+	%service ipsec stop
+	/sbin/chkconfig --del ipsec
 fi
 
 %files
@@ -109,7 +104,6 @@ fi
 %dir /var/run/pluto
 %{_mandir}/man5/*
 %{_mandir}/man8/*
-
 
 # devel docs (but no devel libs)
 #%{_mandir}/man3/*
