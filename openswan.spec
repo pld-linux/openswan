@@ -3,7 +3,7 @@
 # (only ifru_data pointer is supported in 32->64 conversion of SIOCDEVPRIV ioctl,
 #  but openswan puts some static data in structure there)
 Summary:	Open Source implementation of IPsec for the Linux operating system
-Summary(pl):	Otwarta implementacja IPseca dla systemu operacyjnego Linux
+Summary(pl.UTF-8):   Otwarta implementacja IPseca dla systemu operacyjnego Linux
 Name:		openswan
 Version:	2.4.6
 Release:	1
@@ -36,11 +36,11 @@ operating system. Is it a code fork of the FreeS/WAN project, started
 by a few of the developers who were growing frustrated with the
 politics surrounding the FreeS/WAN project.
 
-%description -l pl
+%description -l pl.UTF-8
 Openswan to otwarta implementacja IPseca dla systemu operacyjnego
-Linux 2.6.x. Jest to odga³êzienie kodu z projektu FreeS/WAN,
-rozpoczête przez kilku programistów coraz bardziej sfrustrowanych
-polityk± otaczaj±c± projekt FreeS/WAN.
+Linux 2.6.x. Jest to odgaÅ‚Ä™zienie kodu z projektu FreeS/WAN,
+rozpoczÄ™te przez kilku programistÃ³w coraz bardziej sfrustrowanych
+politykÄ… otaczajÄ…cÄ… projekt FreeS/WAN.
 
 %prep
 %setup -q
