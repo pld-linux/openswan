@@ -3,7 +3,7 @@
 # (only ifru_data pointer is supported in 32->64 conversion of SIOCDEVPRIV ioctl,
 #  but openswan puts some static data in structure there)
 Summary:	Open Source implementation of IPsec for the Linux operating system
-Summary(pl.UTF-8):   Otwarta implementacja IPseca dla systemu operacyjnego Linux
+Summary(pl.UTF-8):	Otwarta implementacja IPseca dla systemu operacyjnego Linux
 Name:		openswan
 Version:	2.4.6
 Release:	1
