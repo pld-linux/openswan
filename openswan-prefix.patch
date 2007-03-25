@@ -46,6 +46,6 @@ diff -Nuard openswan-2.1.2.orig/programs/examples/Makefile openswan-2.1.2/progra
  
 -CONFDSUBDIR=examples
 +CONFDSUBDIR=.
- CONFDFILES=no_oe.conf l2tp-cert.conf l2tp-cert-orgWIN2KXP.conf l2tp-psk.conf l2tp-psk-orgWIN2KXP.conf
+ CONFDFILES=no_oe.conf l2tp-cert.conf l2tp-cert-orgWIN2KXP.conf l2tp-psk.conf l2tp-psk-orgWIN2KXP.conf linux-linux.conf
  
  include ${srcdir}../Makefile.program
