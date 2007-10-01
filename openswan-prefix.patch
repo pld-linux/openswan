@@ -37,15 +37,14 @@ diff -Nuard openswan-2.1.2.orig/Makefile.inc openswan-2.1.2/Makefile.inc
  else
  endif
  
-diff -Nuard openswan-2.1.2.orig/programs/examples/Makefile openswan-2.1.2/programs/examples/Makefile
---- openswan-2.1.2.orig/programs/examples/Makefile	2004-01-20 20:24:23.000000000 +0100
-+++ openswan-2.1.2/programs/examples/Makefile	2004-05-25 12:05:58.308427376 +0200
+--- openswan-2.4.9/programs/examples/Makefile~	2007-10-01 15:45:22.000000000 +0300
++++ openswan-2.4.9/programs/examples/Makefile	2007-10-01 15:59:30.299660808 +0300
 @@ -16,7 +16,7 @@
  OPENSWANSRCDIR?=$(shell cd ../..; pwd)
  include ${OPENSWANSRCDIR}/Makefile.inc
  
 -CONFDSUBDIR=examples
 +CONFDSUBDIR=.
- CONFDFILES=no_oe.conf l2tp-cert.conf l2tp-cert-orgWIN2KXP.conf l2tp-psk.conf l2tp-psk-orgWIN2KXP.conf linux-linux.conf
+ CONFDFILES=no_oe.conf l2tp-cert.conf l2tp-cert-orgWIN2KXP.conf l2tp-psk.conf l2tp-psk-orgWIN2KXP.conf linux-linux.conf sysctl.conf
  
  include ${srcdir}../Makefile.program
