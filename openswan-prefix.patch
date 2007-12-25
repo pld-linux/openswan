@@ -14,8 +14,8 @@ diff -Nuard openswan-2.1.2.orig/Makefile.inc openswan-2.1.2/Makefile.inc
  
  # BINDIR is where sub-commands get put, FINALBINDIR is where the "ipsec"
  # command will look for them when it is run. Also called LIBEXECDIR.
--FINALLIBEXECDIR=$(INC_USRLOCAL)/libexec/ipsec
-+FINALLIBEXECDIR=$(INC_USRLOCAL)/lib/ipsec
+-FINALLIBEXECDIR?=$(INC_USRLOCAL)/libexec/ipsec
++FINALLIBEXECDIR?=$(INC_USRLOCAL)/lib/ipsec
  LIBEXECDIR=$(DESTDIR)$(FINALBINDIR)
  
  FINALBINDIR=${FINALLIBEXECDIR}
@@ -45,6 +45,6 @@ diff -Nuard openswan-2.1.2.orig/Makefile.inc openswan-2.1.2/Makefile.inc
  
 -CONFDSUBDIR=examples
 +CONFDSUBDIR=.
- CONFDFILES=no_oe.conf l2tp-cert.conf l2tp-cert-orgWIN2KXP.conf l2tp-psk.conf l2tp-psk-orgWIN2KXP.conf linux-linux.conf sysctl.conf
+ CONFDFILES=no_oe.conf l2tp-cert.conf l2tp-psk.conf linux-linux.conf sysctl.conf
  
  include ${srcdir}../Makefile.program
