@@ -45,6 +45,6 @@ diff -Nuard openswan-2.1.2.orig/Makefile.inc openswan-2.1.2/Makefile.inc
  
 -CONFDSUBDIR=examples
 +CONFDSUBDIR=.
- CONFDFILES=no_oe.conf l2tp-cert.conf l2tp-psk.conf linux-linux.conf sysctl.conf
+ CONFDFILES=l2tp-cert.conf l2tp-psk.conf linux-linux.conf sysctl.conf xauth.conf ipv6.conf
  
  include ${srcdir}../Makefile.program
