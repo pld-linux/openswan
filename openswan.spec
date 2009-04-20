@@ -5,13 +5,13 @@
 Summary:	Open Source implementation of IPsec for the Linux operating system
 Summary(pl.UTF-8):	Otwarta implementacja IPseca dla systemu operacyjnego Linux
 Name:		openswan
-Version:	2.4.13
+Version:	2.6.20
 Release:	1
 Epoch:		0
 License:	GPL/BSD
 Group:		Networking/Daemons
 Source0:	http://www.openswan.org/download/%{name}-%{version}.tar.gz
-# Source0-md5:	0c2505cf2639a7de051e815f41e8e1f4
+# Source0-md5:	2e4751e39b2421406692e767e96a6f14
 Source1:	%{name}.init
 Patch0:		%{name}-prefix.patch
 Patch1:		%{name}-bash.patch
@@ -21,6 +21,8 @@ BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gmp-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	xmlto
+BuildRequires:	man2html
 BuildRequires:	sed >= 4.0
 Requires(post,preun):	/sbin/chkconfig
 Requires:	bash
@@ -46,8 +48,8 @@ polityką otaczającą projekt FreeS/WAN.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
+#%patch1 -p1
+#%patch2 -p1
 
 %{__sed} -i -e "s#/lib/ipsec#/%{_lib}/ipsec#g#" Makefile
 %{__sed} -i -e "s#/lib/freeswan$#/%{_lib}/freeswan#g#" Makefile
@@ -103,6 +105,7 @@ fi
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.conf
 %dir %{_sysconfdir}/ipsec.d
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/*
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/rc.d/*
 %dir /var/run/pluto
 %{_mandir}/man5/*
 %{_mandir}/man8/*
