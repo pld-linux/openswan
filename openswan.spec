@@ -2,6 +2,9 @@
 # 32-bit tncfg and starter won't work on 64-bit kernels because of FUBAR ioctls
 # (only ifru_data pointer is supported in 32->64 conversion of SIOCDEVPRIV ioctl,
 #  but openswan puts some static data in structure there)
+#
+# crashes with "make -j8", builds fine with "make -j1"; enforce -j1 ???
+#
 Summary:	Open Source implementation of IPsec for the Linux operating system
 Summary(pl.UTF-8):	Otwarta implementacja IPseca dla systemu operacyjnego Linux
 Name:		openswan
@@ -15,7 +18,6 @@ Source0:	http://www.openswan.org/download/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Patch0:		%{name}-prefix.patch
 Patch1:		%{name}-bash.patch
-Patch2:		%{name}-enable_des.patch
 URL:		http://www.openswan.org/
 BuildRequires:	bison
 BuildRequires:	flex
@@ -49,16 +51,17 @@ polityką otaczającą projekt FreeS/WAN.
 %setup -q
 %patch0 -p1
 #%patch1 -p1
-#%patch2 -p1
 
 %{__sed} -i -e "s#/lib/ipsec#/%{_lib}/ipsec#g#" Makefile
 %{__sed} -i -e "s#/lib/freeswan$#/%{_lib}/freeswan#g#" Makefile
 %{__sed} -i -e "s#/lib/ipsec#/%{_lib}/ipsec#g#" Makefile.inc
 
 %build
-%{__make} programs \
-	CC="%{__cc}" \
-	USERCOMPILE="%{rpmcflags}"
+USE_WEAKSTUFF=true \
+USE_NOCRYPTO=true \
+	%{__make} programs \
+		CC="%{__cc}" \
+		USERCOMPILE="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
