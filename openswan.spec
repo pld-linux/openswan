@@ -20,6 +20,7 @@ Source1:	%{name}.init
 Patch0:		%{name}-prefix.patch
 Patch1:		%{name}-bash.patch
 URL:		http://www.openswan.org/
+BuildRequires:	bind-devel
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gmp-devel
