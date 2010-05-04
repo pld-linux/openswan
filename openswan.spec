@@ -63,7 +63,7 @@ polityką otaczającą projekt FreeS/WAN.
 %build
 USE_WEAKSTUFF=true \
 USE_NOCRYPTO=true \
-	%{__make} programs \
+	%{__make} -j1 programs \
 		CC="%{__cc}" \
 		USERCOMPILE="%{rpmcflags}"
 
