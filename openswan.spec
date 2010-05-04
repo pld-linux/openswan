@@ -1,10 +1,10 @@
+# TODO:
+# - openswan.init needs update for 2.6.x
+#
 # NOTE:
 # 32-bit tncfg and starter won't work on 64-bit kernels because of FUBAR ioctls
 # (only ifru_data pointer is supported in 32->64 conversion of SIOCDEVPRIV ioctl,
 #  but openswan puts some static data in structure there)
-#
-# crashes with "make -j8", builds fine with "make -j1"; enforce -j1 ???
-# openswan.init needs update for 2.6.x
 #
 Summary:	Open Source implementation of IPsec for the Linux operating system
 Summary(pl.UTF-8):	Otwarta implementacja IPseca dla systemu operacyjnego Linux
