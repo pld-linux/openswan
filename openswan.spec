@@ -19,6 +19,7 @@ Source0:	http://www.openswan.org/download/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Patch0:		%{name}-prefix.patch
 Patch1:		%{name}-bash.patch
+Patch2:		%{name}-buildfix.patch
 URL:		http://www.openswan.org/
 BuildRequires:	bind-devel
 BuildRequires:	bison
@@ -53,10 +54,11 @@ polityką otaczającą projekt FreeS/WAN.
 %setup -q
 %patch0 -p1
 #%patch1 -p1
+%patch2 -p1
 
-%{__sed} -i -e "s#/lib/ipsec#/%{_lib}/ipsec#g#" Makefile
-%{__sed} -i -e "s#/lib/freeswan$#/%{_lib}/freeswan#g#" Makefile
-%{__sed} -i -e "s#/lib/ipsec#/%{_lib}/ipsec#g#" Makefile.inc
+%{__sed} -i -e 's#/lib/ipsec#/%{_lib}/ipsec#g#' Makefile
+%{__sed} -i -e 's#/lib/freeswan$#/%{_lib}/freeswan#g#' Makefile
+%{__sed} -i -e 's#/lib/ipsec#/%{_lib}/ipsec#g#' Makefile.inc
 
 %build
 USE_WEAKSTUFF=true \
