@@ -21,14 +21,15 @@ Patch0:		%{name}-prefix.patch
 Patch1:		%{name}-bash.patch
 Patch2:		%{name}-buildfix.patch
 URL:		http://www.openswan.org/
-BuildRequires:	bind-devel
 BuildRequires:	bison
+BuildRequires:	docbook-dtd412-xml
 BuildRequires:	flex
 BuildRequires:	gmp-devel
-BuildRequires:	rpmbuild(macros) >= 1.268
-BuildRequires:	xmlto
 BuildRequires:	man2html
+BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	sed >= 4.0
+BuildRequires:	which
+BuildRequires:	xmlto
 Requires(post,preun):	/sbin/chkconfig
 Requires:	bash
 Requires:	rc-scripts
@@ -112,7 +113,7 @@ fi
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.conf
 %dir %{_sysconfdir}/ipsec.d
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/*
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/rc.d/*
+%config(noreplace) %verify(not md5 mtime size) /etc/rc.d/*
 %dir /var/run/pluto
 %{_mandir}/man5/*
 %{_mandir}/man8/*
