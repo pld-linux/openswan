@@ -28,24 +28,14 @@ diff -burNp openswan-2.6.23/Makefile.inc openswan-2.6.23-dud/Makefile.inc
  # all relevant subdirectories of MANTREE
  MANPLACES=man3 man5 man8
  
-@@ -358,7 +358,7 @@ USE_LIBCURL?=false
- USE_OE?=true
- ifeq ($(USE_OE),false)
- # warning: examples subdirectory is statically defined here
--OE_FLAG=\#Disable Opportunistic Encryption\\ninclude ${FINALCONFDDIR}/examples/no_oe.conf
-+OE_FLAG=\#Disable Opportunistic Encryption\\ninclude ${FINALCONFDDIR}/no_oe.conf
- else
- endif
- 
-diff -burNp openswan-2.6.23/programs/examples/Makefile openswan-2.6.23-dud/programs/examples/Makefile
---- openswan-2.6.23/programs/examples/Makefile	2009-09-09 02:42:54.000000000 +0200
-+++ openswan-2.6.23-dud/programs/examples/Makefile	2009-11-05 21:29:01.589016940 +0100
+--- openswan-2.6.31/programs/examples/Makefile.orig	2010-10-18 19:13:36.000000000 +0300
++++ openswan-2.6.31/programs/examples/Makefile	2010-10-23 13:57:30.737483665 +0300
 @@ -15,7 +15,7 @@
  OPENSWANSRCDIR?=$(shell cd ../..; pwd)
  include ${OPENSWANSRCDIR}/Makefile.inc
  
 -CONFDSUBDIR=examples
 +CONFDSUBDIR=.
- CONFDFILES=l2tp-cert.conf l2tp-psk.conf linux-linux.conf sysctl.conf xauth.conf ipv6.conf hub-spoke.conf oe-exclude-dns.conf
+ CONFDFILES=l2tp-cert.conf l2tp-psk.conf linux-linux.conf sysctl.conf xauth.conf ipv6.conf hub-spoke.conf oe-exclude-dns.conf mast-l2tp-psk.conf
  
  include ${srcdir}../Makefile.program
