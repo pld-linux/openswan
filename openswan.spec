@@ -27,6 +27,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	flex
 BuildRequires:	gmp-devel
 BuildRequires:	man2html
+BuildRequires:	perl-tools-pod
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	sed >= 4.0
 BuildRequires:	which
