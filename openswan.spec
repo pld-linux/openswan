@@ -12,12 +12,12 @@
 Summary:	Open Source implementation of IPsec for the Linux operating system
 Summary(pl.UTF-8):	Otwarta implementacja IPseca dla systemu operacyjnego Linux
 Name:		openswan
-Version:	2.6.33
+Version:	2.6.39
 Release:	0.1
-License:	GPL/BSD
+License:	GPL v2+ (main parts), BSD (DES and radij code)
 Group:		Networking/Daemons
 Source0:	http://www.openswan.org/download/%{name}-%{version}.tar.gz
-# Source0-md5:	7e9c28585307b7ad4f59737debb0d940
+# Source0-md5:	199757597f9f776d85752bb0c713b5ed
 Source1:	%{name}.init
 Patch0:		%{name}-prefix.patch
 Patch1:		%{name}-bash.patch
@@ -26,7 +26,6 @@ BuildRequires:	bison
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	flex
 BuildRequires:	gmp-devel
-BuildRequires:	man2html
 BuildRequires:	perl-tools-pod
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	sed >= 4.0
@@ -58,9 +57,7 @@ polityką otaczającą projekt FreeS/WAN.
 %patch0 -p1
 #%patch1 -p1
 
-%{__sed} -i -e 's#/lib/ipsec#/%{_lib}/ipsec#g#' Makefile
-%{__sed} -i -e 's#/lib/freeswan$#/%{_lib}/freeswan#g#' Makefile
-%{__sed} -i -e 's#/lib/ipsec#/%{_lib}/ipsec#g#' Makefile.inc
+%{__sed} -i -e 's#/lib/ipsec#/%{_lib}/ipsec#g#' Makefile Makefile.inc
 
 %build
 USE_WEAKSTUFF=true \
@@ -85,11 +82,13 @@ for l in `find $RPM_BUILD_ROOT%{_mandir}/man3 -type l` ; do
 	echo ".so $d" > $l
 done
 
-# just man pages converted to HTML
-rm -rf $RPM_BUILD_ROOT%{_docdir}/openswan/*.[358].html
-
 # API not exported - kill for now
-rm -rf $RPM_BUILD_ROOT%{_mandir}/man3
+%{__rm} -r $RPM_BUILD_ROOT%{_mandir}/man3
+
+install -d $RPM_BUILD_ROOT%{systemdtmpfilesdir}
+cat >$RPM_BUILD_ROOT%{systemdtmpfilesdir}/openswan.conf <<EOF
+d /var/run/pluto 0755 root root -
+EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -107,17 +106,41 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc BUGS CHANGES CREDITS LICENSE README
-%attr(755,root,root) %{_sbindir}/*
+%attr(755,root,root) %{_sbindir}/ipsec
 %dir %{_libdir}/ipsec
 %attr(755,root,root) %{_libdir}/ipsec/*
 %attr(754,root,root) /etc/rc.d/init.d/ipsec
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.conf
 %dir %{_sysconfdir}/ipsec.d
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/*
-%config(noreplace) %verify(not md5 mtime size) /etc/rc.d/*
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/hub-spoke.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/ipv6.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/l2tp-cert.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/l2tp-psk.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/linux-linux.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/mast-l2tp-psk.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/oe-exclude-dns.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/sysctl.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/xauth.conf
+%dir %{_sysconfdir}/ipsec.d/aacerts
+%dir %{_sysconfdir}/ipsec.d/cacerts
+%dir %{_sysconfdir}/ipsec.d/certs
+%dir %{_sysconfdir}/ipsec.d/crls
+%dir %{_sysconfdir}/ipsec.d/ocspcerts
+%dir %{_sysconfdir}/ipsec.d/policies
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/policies/block
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/policies/clear
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/policies/clear-or-private
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/policies/private
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/policies/private-or-clear
+%dir %{_sysconfdir}/ipsec.d/private
+%config(noreplace) %verify(not md5 mtime size) /etc/rc.d/init.d/ipsec
 %dir /var/run/pluto
-%{_mandir}/man5/*
-%{_mandir}/man8/*
+%{systemdtmpfilesdir}/openswan.conf
+%{_mandir}/man5/ipsec.conf.5*
+%{_mandir}/man5/ipsec.secrets.5*
+%{_mandir}/man5/ipsec_*.5*
+%{_mandir}/man8/ipsec.8*
+%{_mandir}/man8/ipsec_*.8*
 
 # devel docs (but no devel libs)
-#%{_mandir}/man3/*
+#%{_mandir}/man3/ipsec_*.3*
