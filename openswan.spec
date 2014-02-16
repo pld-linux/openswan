@@ -12,12 +12,12 @@
 Summary:	Open Source implementation of IPsec for the Linux operating system
 Summary(pl.UTF-8):	Otwarta implementacja IPseca dla systemu operacyjnego Linux
 Name:		openswan
-Version:	2.6.39
+Version:	2.6.40
 Release:	0.1
 License:	GPL v2+ (main parts), BSD (DES and radij code)
 Group:		Networking/Daemons
-Source0:	http://www.openswan.org/download/%{name}-%{version}.tar.gz
-# Source0-md5:	199757597f9f776d85752bb0c713b5ed
+Source0:	https://download.openswan.org/openswan/%{name}-%{version}.tar.gz
+# Source0-md5:	0fa75b66d344c5e0e0c56434eff49249
 Source1:	%{name}.init
 Patch0:		%{name}-prefix.patch
 Patch1:		%{name}-bash.patch
@@ -62,16 +62,18 @@ polityką otaczającą projekt FreeS/WAN.
 %build
 USE_WEAKSTUFF=true \
 USE_NOCRYPTO=true \
-	%{__make} -j1 programs \
-		CC="%{__cc}" \
-		USERCOMPILE="%{rpmcflags}"
+%{__make} -j1 programs \
+	CC="%{__cc}" \
+	USERCOMPILE="%{rpmcflags}" \
+	IPSECVERSION=%{version}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d,/var/run/pluto}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	IPSECVERSION=%{version}
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/ipsec
 %{__sed} -i -e "s#/lib/ipsec#/%{_lib}/ipsec#g#" $RPM_BUILD_ROOT/etc/rc.d/init.d/ipsec
@@ -133,7 +135,6 @@ fi
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/policies/private
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ipsec.d/policies/private-or-clear
 %dir %{_sysconfdir}/ipsec.d/private
-%config(noreplace) %verify(not md5 mtime size) /etc/rc.d/init.d/ipsec
 %dir /var/run/pluto
 %{systemdtmpfilesdir}/openswan.conf
 %{_mandir}/man5/ipsec.conf.5*
