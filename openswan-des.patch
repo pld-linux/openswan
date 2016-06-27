@@ -1,0 +1,11 @@
+--- openswan-2.6.48/programs/pluto/crypto.c.orig	2016-06-06 14:41:54.000000000 +0200
++++ openswan-2.6.48/programs/pluto/crypto.c	2016-06-27 17:54:01.870356710 +0200
+@@ -242,7 +242,7 @@
+ #ifdef USE_1DES
+ /*#warning YOUR PLUTO IS INSECURE, IT HAS 1DES. DO NOT USE IT. */
+ 	    {
+-		ike_alg_add((struct ike_alg *) &crypto_encrypter_des);
++		ike_alg_add((struct ike_alg *) &crypto_encrypter_des, FALSE);
+ 	    }
+ #endif
+ 

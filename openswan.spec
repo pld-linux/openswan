@@ -12,15 +12,15 @@
 Summary:	Open Source implementation of IPsec for the Linux operating system
 Summary(pl.UTF-8):	Otwarta implementacja IPseca dla systemu operacyjnego Linux
 Name:		openswan
-Version:	2.6.43
+Version:	2.6.48
 Release:	0.1
 License:	GPL v2+ (main parts), BSD (DES and radij code)
 Group:		Networking/Daemons
 Source0:	https://download.openswan.org/openswan/%{name}-%{version}.tar.gz
-# Source0-md5:	87c4d7d4e537df57dc8e67c60e514724
+# Source0-md5:	9d3309bb7217041cd7f336a1336773ef
 Source1:	%{name}.init
 Patch0:		%{name}-prefix.patch
-Patch1:		%{name}-bash.patch
+Patch1:		%{name}-des.patch
 URL:		http://www.openswan.org/
 BuildRequires:	bison
 BuildRequires:	docbook-dtd412-xml
@@ -55,7 +55,7 @@ polityką otaczającą projekt FreeS/WAN.
 %prep
 %setup -q
 %patch0 -p1
-#%patch1 -p1
+%patch1 -p1
 
 %{__sed} -i -e 's#/lib/ipsec#/%{_lib}/ipsec#g#' Makefile Makefile.inc
 
