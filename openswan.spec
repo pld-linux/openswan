@@ -54,8 +54,8 @@ polityką otaczającą projekt FreeS/WAN.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 %{__sed} -i -e 's#/lib/ipsec#/%{_lib}/ipsec#g#' Makefile Makefile.inc
 
